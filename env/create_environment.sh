@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_FOLDER=/project/g110/pyvis
+PROJECT_FOLDER=/project/g110/pyvis_dev
 rm -rf ${PROJECT_FOLDER}
 mkdir -p ${PROJECT_FOLDER}
 

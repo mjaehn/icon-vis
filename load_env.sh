@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# This script is for tsa. TODO: Adapt for daint.
+PROJECT_FOLDER=/project/g110/pyvis_dev
+
+if [[ $HOST == *'tsa'* ]]; then
+    VENV_PATH=${PROJECT_FOLDER}/venv_tsa_test
+elif [[ $HOST == *'daint'* ]]; then
+    VENV_PATH=${PROJECT_FOLDER}/venv_daint_test
+fi
 
 # ---- required for cf-grib engine ------
 
@@ -37,10 +43,9 @@ if [[ $HOST == *'tsa'* ]]; then
 	module use /apps/common/UES/sandbox/kraushm/tsa-PROJ/modules/all
 	module load PrgEnv-gnu proj/8.0.0-fosscuda-2019b geos
     #module load eccodes
-    source /project/g110/pyvis/venv_tsa/bin/activate
 elif [[ $HOST == *'daint'* ]]; then
     export EASYBUILD_PREFIX=/project/g110/pyvis
     module load daint-gpu EasyBuild-custom PROJ GEOS cray-python ecCodes/2.23.0-CrayGNU-21.09
-    source /project/g110/pyvis/venv_daint/bin/activate
 fi
 
+source ${VENV_PATH}/bin/activate
