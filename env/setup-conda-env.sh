@@ -14,8 +14,8 @@ if [[ $HOST == *'tsa'* ]]; then
     module load python
     source /project/g110/spack/user/tsa/spack/share/spack/setup-env.sh
 
-    cosmo_eccodes=`spack location -i cosmo-eccodes-definitions@2.19.0.7%gcc@8.3.0`
-    eccodes=`spack location -i eccodes@2.19.0%gcc@8.3.0`
+    cosmo_eccodes=`spack location -i /project/g110/spack-install cosmo-eccodes-definitions@2.19.0.7%gcc@8.3.0`
+    eccodes=`spack location -i eccodes@2.19.0%gcc@8.3.0 ~aec`
 
     export GRIB_DEFINITION_PATH=${cosmo_eccodes}/cosmoDefinitions/definitions/:${eccodes}/share/eccodes/definitions/
     export OMPI_MCA_pml="ucx" 
@@ -37,7 +37,7 @@ elif [[ $HOST == *'daint'* ]]; then
     export OMPI_MCA_osc="ucx"
     echo ${GRIB_DEFINITION_PATH}
     conda env config vars set GRIB_DEFINITION_PATH=${cosmo_eccodes}/cosmoDefinitions/definitions/:${eccodes}/share/eccodes/definitions/
-    
+
 fi
 
 # ---- required for fieldextra ------
