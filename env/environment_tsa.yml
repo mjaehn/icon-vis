@@ -23,4 +23,4 @@ dependencies:
   - pyinterp
   - pytest
   - pip:
-     - "--editable=git+https://github.com/psyplot/psy-transect"
+    - "--editable=git+https://github.com/psyplot/psy-transect#egg=psy-transect"
