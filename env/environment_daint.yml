@@ -1,4 +1,4 @@
-name: psyplot
+name: psyplot_daint
 channels:
   - conda-forge
   - defaults
