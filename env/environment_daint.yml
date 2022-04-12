@@ -22,3 +22,5 @@ dependencies:
   - netcdf4
   - pyinterp
   - pytest
+  - pip:
+    - "--editable=git+https://github.com/psyplot/psy-transect"
