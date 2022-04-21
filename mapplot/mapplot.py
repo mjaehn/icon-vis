@@ -129,7 +129,8 @@ if __name__ == "__main__":
                               map_extent=[
                                   map['lonmin'], map['lonmax'], map['latmin'],
                                   map['latmax']
-                                  ], ax=axes[:])
+                              ],
+                              ax=axes[:])
         if 'projection' in map.keys():
             pp.update(projection=map['projection'])
         if 'add_grid' in map.keys():
@@ -151,16 +152,16 @@ if __name__ == "__main__":
                     coord['lon'][i], coord['lat'][i], map['lonmin'],
                     map['lonmax'], map['latmin'], map['latmax'])
                 axes[0].plot(pos_lon,
-                                 pos_lat,
-                                 coord['col'][i],
-                                 marker=coord['marker'][i],
-                                 markersize=coord['marker_size'][i],
-                                 transform=axes[0].transAxes)
+                             pos_lat,
+                             coord['col'][i],
+                             marker=coord['marker'][i],
+                             markersize=coord['marker_size'][i],
+                             transform=axes[0].transAxes)
                 if 'name' in coord.keys():
                     axes[0].text(pos_lon + llon * 0.003,
-                                     pos_lat + llat * 0.003,
-                                     coord['name'][i],
-                                     transform=axes[0].transAxes)
+                                 pos_lat + llat * 0.003,
+                                 coord['name'][i],
+                                 transform=axes[0].transAxes)
 
     #############
 
