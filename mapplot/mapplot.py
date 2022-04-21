@@ -121,13 +121,17 @@ if __name__ == "__main__":
         else:
             bounds = ['minmax']
         # create psyplot instance
-        pp = psy.plot.mapplot(ds, name=var['name'], t=i, bounds=bounds)
+        axes = psy.multiple_subplots(1, 1, n=1, for_maps=True)
+        pp = psy.plot.mapplot(ds,
+                              name=var['name'],
+                              t=i,
+                              bounds=bounds,
+                              map_extent=[
+                                  map['lonmin'], map['lonmax'], map['latmin'],
+                                  map['latmax']
+                                  ], ax=axes[:])
         if 'projection' in map.keys():
             pp.update(projection=map['projection'])
-        if 'lonmin' in map.keys():
-            pp.update(map_extent=[
-                map['lonmin'], map['lonmax'], map['latmin'], map['latmax']
-            ])
         if 'add_grid' in map.keys():
             pp.update(xgrid=map['add_grid'], ygrid=map['add_grid'])
         if 'title' in map.keys():
@@ -139,8 +143,6 @@ if __name__ == "__main__":
         pp.update(borders=True, lakes=True, rivers=False)
 
         # go to matplotlib level
-        fig = plt.gcf()
-
         if coord:
             llon = map['lonmax'] - map['lonmin']
             llat = map['latmax'] - map['latmin']
@@ -148,17 +150,17 @@ if __name__ == "__main__":
                 pos_lon, pos_lat = add_coordinates(
                     coord['lon'][i], coord['lat'][i], map['lonmin'],
                     map['lonmax'], map['latmin'], map['latmax'])
-                fig.axes[0].plot(pos_lon,
+                axes[0].plot(pos_lon,
                                  pos_lat,
                                  coord['col'][i],
                                  marker=coord['marker'][i],
                                  markersize=coord['marker_size'][i],
-                                 transform=fig.axes[0].transAxes)
+                                 transform=axes[0].transAxes)
                 if 'name' in coord.keys():
-                    fig.axes[0].text(pos_lon + llon * 0.003,
+                    axes[0].text(pos_lon + llon * 0.003,
                                      pos_lat + llat * 0.003,
                                      coord['name'][i],
-                                     transform=fig.axes[0].transAxes)
+                                     transform=axes[0].transAxes)
 
     #############
 
