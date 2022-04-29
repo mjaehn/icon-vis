@@ -27,10 +27,11 @@ if __name__ == "__main__":
     with xr.open_dataset(input_file) as ds:
         print(ds.keys())
         # Read and modifiy output file
-        print(ds['time'].values) 
-        times = [21110111., 11110211., 11110311., 11110411., 11110511., 11110611.,
-                 11110711., 11110811., 11110911., 11111011., 11111111., 11111211.]
-        ds = ds.assign_coords(time=ds.time + 1e7) 
+        print(ds['time'].values)
+        times = [
+            21110111., 11110211., 11110311., 11110411., 11110511., 11110611.,
+            11110711., 11110811., 11110911., 11111011., 11111111., 11111211.
+        ]
+        ds = ds.assign_coords(time=ds.time + 1e7)
         print(ds['time'].values)
         ds.to_netcdf(path=output_file, mode='w')
-
