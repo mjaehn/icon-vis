@@ -2,6 +2,7 @@
 import sys
 import numpy as np
 import xarray as xr
+
 xr.set_options(display_max_rows=44)
 import argparse
 from pathlib import Path
@@ -41,5 +42,5 @@ if __name__ == "__main__":
 
         print(ds)
 
-        # Write to netCDF file        
+        # Write to netCDF file
         ds.to_netcdf(path=output_file, mode='w')
