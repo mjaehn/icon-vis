@@ -2,6 +2,7 @@
 import sys
 import numpy as np
 import xarray as xr
+xr.set_options(display_max_rows=44)
 import argparse
 from pathlib import Path
 
@@ -11,10 +12,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--infile', '-i', dest = 'input_file',\
                             help = 'name of input file',\
-                            default='/store/c2sm/c2sme/VPRM/setup_C2SM/input/grid/extpar_file.nc')
+                            default='/home/mjaehn/extpar/extpar_file.nc')
     parser.add_argument('--outfile', '-o', dest = 'output_file',\
                             help = 'name of output file',\
-                            default = '/store/c2sm/c2sme/VPRM/setup_C2SM/input/grid/extpar_file_modified.nc')
+                            default = '/home/mjaehn/extpar/extpar_file_modified.nc')
     args = parser.parse_args()
 
     # Check if input file exists
@@ -25,13 +26,20 @@ if __name__ == "__main__":
 
     # Read input file
     with xr.open_dataset(input_file) as ds:
-        print(ds.keys())
-        # Read and modifiy output file
-        print(ds['time'].values)
-        times = [
-            21110111., 11110211., 11110311., 11110411., 11110511., 11110611.,
-            11110711., 11110811., 11110911., 11111011., 11111111., 11111211.
-        ]
+        # Change times
         ds = ds.assign_coords(time=ds.time + 1e7)
-        print(ds['time'].values)
+        # Split up LU_CLASS_FRACTION
+        print(ds['LU_CLASS_FRACTION']['nclass_lu'])
+        for i in ds['LU_CLASS_FRACTION']['nclass_lu'].values:
+            print(i)
+            print(ds['LU_CLASS_FRACTION'][i].values)
+            print(np.mean(ds['LU_CLASS_FRACTION'][i].values))
+            idx = i + 1
+            varname = f'LU_CLASS_FRACTION_{idx:02d}'
+            print(varname)
+            ds[varname] = ds['LU_CLASS_FRACTION'][i]
+
+        print(ds)
+
+        # Write to netCDF file        
         ds.to_netcdf(path=output_file, mode='w')
