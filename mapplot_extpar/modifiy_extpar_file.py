@@ -42,5 +42,31 @@ if __name__ == "__main__":
 
         print(ds)
 
+        # Create VPRM classes
+        ds['VPRM_01'] = ds['LU_CLASS_FRACTION_05'] + \
+                        ds['LU_CLASS_FRACTION_08'] 
+        ds['VPRM_02'] = ds['LU_CLASS_FRACTION_06'] + \
+                        ds['LU_CLASS_FRACTION_07'] + \
+                        ds['LU_CLASS_FRACTION_09']
+        ds['VPRM_03'] = ds['LU_CLASS_FRACTION_10'] + \
+                        ds['LU_CLASS_FRACTION_16'] + \
+                        ds['LU_CLASS_FRACTION_17']
+        ds['VPRM_04'] = ds['LU_CLASS_FRACTION_11'] + \
+                        ds['LU_CLASS_FRACTION_12'] + \
+                        ds['LU_CLASS_FRACTION_13'] + \
+                        ds['LU_CLASS_FRACTION_15'] * 0.5
+        ds['VPRM_05'] = ds['LU_CLASS_FRACTION_01'] * 0
+        ds['VPRM_06'] = ds['LU_CLASS_FRACTION_01'] + \
+                        ds['LU_CLASS_FRACTION_02'] + \
+                        ds['LU_CLASS_FRACTION_03']
+        ds['VPRM_07'] = ds['LU_CLASS_FRACTION_04'] + \
+                        ds['LU_CLASS_FRACTION_14'] + \
+                        ds['LU_CLASS_FRACTION_18']
+        ds['VPRM_08'] = ds['LU_CLASS_FRACTION_15'] * 0.5 + \
+                        ds['LU_CLASS_FRACTION_19'] + \
+                        ds['LU_CLASS_FRACTION_20'] + \
+                        ds['LU_CLASS_FRACTION_21'] + \
+                        ds['LU_CLASS_FRACTION_22']
+
         # Write to netCDF file
         ds.to_netcdf(path=output_file, mode='w')
