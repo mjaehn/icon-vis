@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
         # Create VPRM classes
         ds['VPRM_01'] = ds['LU_CLASS_FRACTION_05'] + \
-                        ds['LU_CLASS_FRACTION_08'] 
+                        ds['LU_CLASS_FRACTION_08']
         ds['VPRM_02'] = ds['LU_CLASS_FRACTION_06'] + \
                         ds['LU_CLASS_FRACTION_07'] + \
                         ds['LU_CLASS_FRACTION_09']

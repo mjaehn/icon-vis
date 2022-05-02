@@ -1,6 +1,7 @@
 # Load required python packages
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+
 mpl.rcParams['figure.figsize'] = [12., 12.]
 import cartopy.feature as cf
 from pathlib import Path
